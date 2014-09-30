@@ -1,0 +1,16 @@
+---
+stash:
+  url: http://stash.example.com/
+  type: stash
+
+crowd:
+  url: http://crowd.example.com/
+  type: crowd
+
+jira:
+  url: http://jira.example.com/
+  type: jira
+
+confluence:
+  url: http://confluence.example.com/
+  type: confluence
