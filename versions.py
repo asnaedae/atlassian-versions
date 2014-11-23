@@ -59,9 +59,9 @@ class AtlassianVersion:
 
     if product == 'crowd':
       p = re.compile('.*Version:.*(\d+\.\d+\.\d+) \(Build.*')
-      m = p.match(soup.find('div', id='footer').find('p').contents[2].split('\n')[1])
+      m = p.match(soup.find('footer').find('div').find('p').contents[2].split('\n')[1])
       if m:
-        return m.group(1)
+       return m.group(1)
 
     return "Unknown product"
 
@@ -79,5 +79,4 @@ if __name__ == '__main__':
     x.setVerbosity(args.verbose)
     installed = x.installedVersion(cfg[instance]['url'], cfg[instance]['type'])
     available = x.returnLatestVersion(cfg[instance]['type'])
-    embed()
     print("{:<40}\t{:>6}\t{:>6}".format(cfg[instance]['url'], installed, available))
