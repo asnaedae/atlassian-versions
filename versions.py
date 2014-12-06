@@ -46,6 +46,11 @@ class AtlassianVersion:
     Returns:
       semantic version (str)
     """
+
+    """
+        APIs for checking installed versions:
+        stash - /rest/api/1.0/application-properties
+    """
     soup = BeautifulSoup(urllib.request.urlopen(url).read().decode('utf-8'))
 
     if product == 'confluence':
