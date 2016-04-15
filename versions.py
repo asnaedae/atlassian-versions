@@ -27,11 +27,15 @@ class AtlassianVersion:
     text = data.decode('utf-8')
     if text.startswith("downloads(["):
       data = data[10:]
+
     if text.endswith("])"):
       data = data[:-1]
+
     j = json.loads(data.decode("utf-8"))
+
     if self.verbose:
       print( json.dumps(j, sort_keys=True, indent=4))
+
     return(j[0]['version'])
 
   def installedVersion(self, url, product):
