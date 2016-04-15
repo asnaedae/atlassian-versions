@@ -51,7 +51,7 @@ class AtlassianVersion:
         APIs for checking installed versions:
         stash - /rest/api/1.0/application-properties
     """
-    soup = BeautifulSoup(urllib.request.urlopen(url).read().decode('utf-8'))
+    soup = BeautifulSoup(urllib.request.urlopen(url).read().decode('utf-8'), "html.parser")
 
     if product == 'confluence':
       return soup.find('span', id='footer-build-information').contents[0]
