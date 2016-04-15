@@ -63,7 +63,7 @@ class AtlassianVersion:
     if product == 'stash':
       return soup.find('span', id='product-version').contents[0][2:]
 
-    if product == 'jira':
+    if product.startswith('jira'):
       return soup.find_all('input', title='JiraVersion')[0]['value']
 
     if product == 'crowd':
@@ -82,10 +82,12 @@ if __name__ == '__main__':
 
   cfg = yaml.load(args.config)
   for instance in sorted(cfg):
-    if args.verbose:
-      print("working on %s" %(cfg[instance]['url']))
-    x = AtlassianVersion()
-    x.setVerbosity(args.verbose)
-    installed = x.installedVersion(cfg[instance]['url'], cfg[instance]['type'])
-    available = x.returnLatestVersion(cfg[instance]['type'])
-    print("{:<40}\t{:>6}\t{:>6}".format(cfg[instance]['url'], installed, available))
+
+     if args.verbose:
+         print("working on %s" %(cfg[instance]['url']))
+
+     x = AtlassianVersion()
+     x.setVerbosity(args.verbose)
+     installed = x.installedVersion(cfg[instance]['url'], cfg[instance]['type'])
+     available = x.returnLatestVersion(cfg[instance]['type'])
+     print("{:<20}\t{:<40}\t{:>6}\t{:>6}".format(cfg[instance]['type'], cfg[instance]['url'], installed, available))
